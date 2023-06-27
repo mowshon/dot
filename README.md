@@ -23,6 +23,7 @@ Whether you are aiming to replace a specific element in a slice or add a new ent
 - [Insertion into Channels](#insertion-into-channels)
 - [Working with Different Map Keys: Placeholders](#working-with-different-map-keys-placeholders)
 - [Pros, Cons and Use Cases](#pros-cons-and-use-cases)
+- [Benchmark Results](#benchmark-results)
 
 ## Getting Started
 
@@ -366,3 +367,23 @@ Despite these potential drawbacks, the `dot` package can be **incredibly useful*
 * **JSON Path-like Operations**: If you need to perform JSONPath-like operations but on Go data structures, `dot` provides a similar functionality.
 
 As always, the decision to use a package like `dot` should be based on your specific use case, taking into account the trade-offs between readability, maintainability, performance, and development speed.
+
+## Benchmark Results
+
+We conducted a benchmark comparison between the `dot` package and the native Golang style for data insertion into different data types in a 5-level nested structure. Here are the results:
+
+```
+BenchmarkDotInsert-12       	  320488	      3536 ns/op
+BenchmarkNativeInsert-12    	442920729	         2.661 ns/op
+```
+
+### Interpretation
+
+* `BenchmarkDotInsert-12` is the function that tests the performance of our `dot` package. The benchmark was able to perform `320,488` iterations of the function in the default time (1 second), with each operation taking `3,536` nanoseconds (ns) or `3.536` microseconds (µs).
+* `BenchmarkNativeInsert-12` is the function that tests the performance of the equivalent native Golang operations. The benchmark was able to perform a staggering `442,920,729` iterations in the default time, with each operation taking only `2.661` nanoseconds (ns).
+
+## Conclusion
+
+Based on the benchmark results, it's evident that the native Golang operations are faster than the operations performed by the `dot` package. However, speed isn't everything when it comes to code. While the native Golang style may be faster, it can also be more verbose and complex, especially when dealing with deeply nested data structures.
+
+On the other hand, the `dot` package, although a bit slower, provides a cleaner, simpler syntax that is easier to read and maintain. It also handles errors robustly, which can be a major advantage in many scenarios. Therefore, it's recommended to use the `dot` package when you prioritize code simplicity and maintainability over execution speed.
