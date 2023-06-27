@@ -1,7 +1,7 @@
 package dot
 
 import (
-	"reflect"
+	"github.com/goccy/go-reflect"
 )
 
 // inChannel inserts the value into the channel on the specified pat

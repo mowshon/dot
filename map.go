@@ -3,7 +3,7 @@ package dot
 import (
 	"errors"
 	"fmt"
-	"reflect"
+	"github.com/goccy/go-reflect"
 	"strconv"
 	"strings"
 )

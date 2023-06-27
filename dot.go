@@ -2,7 +2,7 @@ package dot
 
 import (
 	"fmt"
-	"reflect"
+	"github.com/goccy/go-reflect"
 	"strings"
 )
 
