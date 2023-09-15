@@ -1,3 +1,7 @@
+![dot-logo](https://github.com/mowshon/dot/assets/2056896/e3f2396e-817c-4668-bb35-c3c5c49be5aa)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mowshon_dot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=mowshon_dot) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mowshon_dot&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mowshon_dot) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mowshon_dot&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mowshon_dot) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mowshon_dot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mowshon_dot) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=mowshon_dot&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=mowshon_dot)
+
 # Connect.the.Dots, Control.your.Data!
 `dot` is a versatile and powerful Go package aimed to simplify and streamline data manipulations in complex structures. This robust package offers you the ability to insert values into struct fields, arrays, slices, maps, and even channels using a dot-separated path, providing an intuitive and concise way to navigate and alter nested data structures in Go. From nested struct fields to dynamic collections, and from map keys of different types to channels, `dot` delivers an incredible amount of flexibility and convenience to your Go programming.
 
