@@ -119,6 +119,12 @@ func (d *Dot) insert(innerObj reflect.Value, previousPath string, parts []string
 			if innerObj.Kind() == reflect.Chan {
 				return d.inChannel(innerObj, currentPath, remainingParts)
 			}
+		case reflect.Interface:
+			return fmt.Errorf(
+				"the type in %s is interface{} and it is impossible to further predict the path",
+				previousPath,
+			)
+
 		default:
 			// If it is logical to already insert a value in the specified path,
 			// but the path has not yet ended, it means that the path is specified incorrectly
@@ -140,7 +146,7 @@ func set(innerObj reflect.Value, currentPath string, content any, source Scenari
 	value := reflect.ValueOf(content)
 
 	// Checking for type matching
-	if innerObj.Type() != value.Type() {
+	if innerObj.Type() != value.Type() && innerObj.Kind() != reflect.Interface {
 		return fmt.Errorf(
 			errMsg[source], innerObj.Type(), value.Type(), currentPath,
 		)

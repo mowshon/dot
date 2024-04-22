@@ -40,6 +40,7 @@ type Data struct {
 	K    map[uint64]string
 	L    map[Key]string
 	M    map[[2]int]string
+	N    map[string]any
 }
 
 func TestInvalidType(t *testing.T) {
@@ -73,6 +74,35 @@ func TestNewFailure(t *testing.T) {
 	if obj, err := dot.New(data); assert.Error(t, err) {
 		assert.ErrorContains(t, err, "expected a pointer")
 		assert.Nil(t, obj)
+	}
+}
+
+func TestSetInterface(t *testing.T) {
+	data := Data{
+		N: map[string]any{
+			"First": Info{},
+		},
+	}
+
+	obj, err := dot.New(&data)
+	assert.Nil(t, err)
+
+	// On the path of data insertion the type interface{} is found,
+	// further it is impossible to define the path
+	if err := obj.Insert("N.First.Title", "New Title"); assert.Error(t, err) {
+		assert.ErrorContains(
+			t, err, "the type in N.First is interface{} and it is impossible to further predict the path",
+		)
+	}
+
+	// If the final destination in the path is interface{},
+	// then we insert the provided value into it
+	if err := obj.Insert("N.First", Info{Title: "Any Title"}); assert.NoError(t, err) {
+		if value, exists := data.N["First"]; assert.True(t, exists) {
+			if n, ok := value.(Info); assert.True(t, ok) {
+				assert.Exactly(t, "Any Title", n.Title)
+			}
+		}
 	}
 }
 
